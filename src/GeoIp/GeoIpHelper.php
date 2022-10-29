@@ -1,6 +1,6 @@
 <?php
 
-namespace FileStorage\GeoIp;
+namespace FileManager\GeoIp;
 
 use Exception;
 use GeoIp2\Database\Reader;
