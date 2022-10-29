@@ -1,0 +1,9 @@
+# vendor
+/node_modules
+/vendor
+
+# idea
+/.idea
+
+# composer
+composer.lock
