@@ -2,7 +2,7 @@
 
 namespace FileManager\File;
 
-class FilesizeHelper
+class FileSizeHelper
 {
     public static function humanReadableFileSize(int $size, ?string $unit = null): string
     {
