@@ -1,6 +1,6 @@
 <?php
 
-namespace App\File;
+namespace FileManager\File;
 
 use Cocur\Slugify\Slugify;
 
@@ -9,10 +9,20 @@ class FileHelper
     public const TYPE_AUDIO = 'audio';
     public const TYPE_ARCHIVE = 'archive';
     public const TYPE_DOCUMENT = 'document';
-    public const TYPE_FILE = 'file';
+    public const TYPE_FILE = 'file'; // generic file type
     public const TYPE_PHOTO = 'photo';
     public const TYPE_SUBTITLES = 'subtitles';
     public const TYPE_VIDEO = 'video';
+
+    public const FILE_TYPES = [
+        self::TYPE_AUDIO,
+        self::TYPE_ARCHIVE,
+        self::TYPE_DOCUMENT,
+        self::TYPE_FILE,
+        self::TYPE_PHOTO,
+        self::TYPE_SUBTITLES,
+        self::TYPE_VIDEO,
+    ];
 
     public const MAX_FILE_URL_LENGTH = 150;
 
@@ -50,32 +60,31 @@ class FileHelper
     public static function getFileTypeFromExtension(string $extension): string
     {
         switch ($extension) {
-
             case 'rar':
             case 'zip':
-            case'4z':
-            case'tar':
-            case'gz':
-            case'iso':
+            case '4z':
+            case 'tar':
+            case 'gz':
+            case 'iso':
                 return self::TYPE_ARCHIVE;
-            case'mpg':
-            case'mpeg':
-            case'wmv':
-            case'3gp':
-            case'mov':
-            case'asf':
-            case'wma':
-            case'avi':
-            case'flv':
-            case'mp4':
+            case 'mpg':
+            case 'mpeg':
+            case 'wmv':
+            case '3gp':
+            case 'mov':
+            case 'asf':
+            case 'wma':
+            case 'avi':
+            case 'flv':
+            case 'mp4':
                 return self::TYPE_VIDEO;
-            case'mp3':
-            case'flac':
-            case'wav':
-            case'ogg':
-            case'acc':
+            case 'mp3':
+            case 'flac':
+            case 'wav':
+            case 'ogg':
+            case 'acc':
                 return self::TYPE_AUDIO;
-            case'jpg':
+            case 'jpg':
             case 'jpeg':
             case 'png':
             case 'gif':
