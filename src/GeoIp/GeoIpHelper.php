@@ -32,7 +32,7 @@ class GeoIpHelper
         try {
             $reader = self::getGeoIpReader();
             $record = $reader->country($ip);
-        } catch (AddressNotFoundException $e) {
+        } catch (AddressNotFoundException) {
             // not found
             return null;
         } catch (Exception $e) {

@@ -59,64 +59,14 @@ class FileHelper
 
     public static function getFileTypeFromExtension(string $extension): string
     {
-        switch ($extension) {
-            case 'rar':
-            case 'zip':
-            case '4z':
-            case 'tar':
-            case 'gz':
-            case 'iso':
-                return self::TYPE_ARCHIVE;
-            case 'mpg':
-            case 'mpeg':
-            case 'wmv':
-            case '3gp':
-            case 'mov':
-            case 'asf':
-            case 'wma':
-            case 'avi':
-            case 'flv':
-            case 'mp4':
-                return self::TYPE_VIDEO;
-            case 'mp3':
-            case 'flac':
-            case 'wav':
-            case 'ogg':
-            case 'acc':
-                return self::TYPE_AUDIO;
-            case 'jpg':
-            case 'jpeg':
-            case 'png':
-            case 'gif':
-            case 'tiff':
-            case 'raw':
-            case 'nef':
-                return self::TYPE_PHOTO;
-            case 'sub':
-            case 'srt':
-                return self::TYPE_SUBTITLES;
-            case 'php':
-            case 'html':
-            case 'htm':
-            case 'xml':
-            case 'text':
-            case 'txt':
-            case 'js':
-            case 'vbs':
-            case 'dtd':
-            case 'asc':
-            case 'cs':
-            case 'css':
-            case 'c':
-            case 'cpp':
-            case 'conf':
-            case 'pdf':
-            case 'doc':
-            case 'docx':
-            case 'xls':
-                return self::TYPE_DOCUMENT;
-            default:
-                return self::TYPE_FILE;
-        }
+        return match ($extension) {
+            'rar', 'zip', '4z', 'tar', 'gz', 'iso' => self::TYPE_ARCHIVE,
+            'mpg', 'mpeg', 'wmv', '3gp', 'mov', 'asf', 'wma', 'avi', 'flv', 'mp4' => self::TYPE_VIDEO,
+            'mp3', 'flac', 'wav', 'ogg', 'acc' => self::TYPE_AUDIO,
+            'jpg', 'jpeg', 'png', 'gif', 'tiff', 'raw', 'nef' => self::TYPE_PHOTO,
+            'sub', 'srt' => self::TYPE_SUBTITLES,
+            'php', 'html', 'htm', 'xml', 'text', 'txt', 'js', 'vbs', 'dtd', 'asc', 'cs', 'css', 'c', 'cpp', 'conf', 'pdf', 'doc', 'docx', 'xls' => self::TYPE_DOCUMENT,
+            default => self::TYPE_FILE,
+        };
     }
 }
