@@ -20,7 +20,8 @@
         "php": "^8.0",
         "ext-mbstring": "*",
         "geoip2/geoip2": "^2.12",
-        "cocur/slugify": "^4.2"
+        "cocur/slugify": "^4.2",
+        "nelexa/zip": "^4.0"
     },
     "require-dev": {
         "roave/security-advisories": "dev-master",
