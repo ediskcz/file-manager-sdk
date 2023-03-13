@@ -18,6 +18,7 @@
     },
     "require": {
         "php": "^8.0",
+        "ext-iconv": "*",
         "ext-mbstring": "*",
         "geoip2/geoip2": "^2.12",
         "cocur/slugify": "^4.2",
