@@ -59,7 +59,7 @@ final class Zip extends Archive
                 'filename' => basename($name),
                 'filesize' => $filesize,
                 'filesize_readable' => $filesizeReadable,
-                'extension' => $pathInfo['extension'],
+                'extension' => $pathInfo['extension'] ?? null,
             ];
         }
 
