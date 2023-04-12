@@ -1,6 +1,6 @@
 <?php
 
-namespace FileManager\Archive;
+namespace Edisk\FileManager\Archive;
 
 use Exception;
 

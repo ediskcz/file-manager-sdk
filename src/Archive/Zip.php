@@ -1,8 +1,8 @@
 <?php
 
-namespace FileManager\Archive;
+namespace Edisk\FileManager\Archive;
 
-use FileManager\File\FileSizeHelper;
+use Edisk\FileManager\File\FileSizeHelper;
 use PhpZip\Exception\ZipEntryNotFoundException;
 use PhpZip\Exception\ZipException;
 use PhpZip\ZipFile;

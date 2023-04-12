@@ -1,6 +1,6 @@
 <?php
 
-namespace FileManager\File;
+namespace Edisk\FileManager\File;
 
 use Cocur\Slugify\Slugify;
 

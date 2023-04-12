@@ -1,6 +1,6 @@
 <?php
 
-namespace FileManager\Archive;
+namespace Edisk\FileManager\Archive;
 
 use InvalidArgumentException;
 
@@ -15,5 +15,10 @@ abstract class Archive implements ArchiveInterface
         }
 
         $this->path = $path;
+    }
+
+    public function getPath(): string
+    {
+        return $this->path;
     }
 }

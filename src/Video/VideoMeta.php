@@ -1,6 +1,6 @@
 <?php
 
-namespace FileManager\Video;
+namespace Edisk\FileManager\Video;
 
 class VideoMeta
 {

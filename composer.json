@@ -1,5 +1,5 @@
 {
-    "name": "sovic/file-manager-sdk",
+    "name": "edisk/file-manager-sdk",
     "description": "File Manager PHP SDK",
     "keywords": [
         "file manager",
@@ -10,7 +10,7 @@
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "FileManager\\": "src/"
+            "Edisk\\FileManager\\": "src/"
         },
         "classmap": [
             "src/"

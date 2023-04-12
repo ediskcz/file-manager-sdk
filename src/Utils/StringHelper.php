@@ -1,6 +1,6 @@
 <?php
 
-namespace FileManager\Utils;
+namespace Edisk\FileManager\Utils;
 
 class StringHelper
 {
