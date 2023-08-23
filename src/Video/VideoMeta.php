@@ -10,20 +10,21 @@ class VideoMeta
             return false;
         }
 
-        $resolution_array = explode('*', $resolution);
+        $resolutionData = explode('*', $resolution);
 
-        return count($resolution_array) === 2 && $resolution_array[0] >= 1280 && $resolution_array[1] >= 720;
+        return count($resolutionData) === 2 && $resolutionData[0] >= 1280 && $resolutionData[1] >= 720;
     }
 
     public static function is4k(string $resolution): bool
     {
-        $resolution_array = explode('*', $resolution);
+        $resolutionData = explode('*', $resolution);
 
-        return count($resolution_array) === 2 && $resolution_array[0] >= 3840 && $resolution_array[1] >= 1480;
+        return count($resolutionData) === 2 && $resolutionData[0] >= 3840 && $resolutionData[1] >= 1480;
     }
 
     /**
-     * @return array [
+     * @return array
+     * [
      *  'duration' => (int) seconds,
      *  'hours' => (int) hours
      *  'minutes' => (int) minutes
