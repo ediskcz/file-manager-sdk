@@ -15,7 +15,11 @@ class FileLinkHelper
         ];
         $plaintext = implode('|', $encryptParts);
         $algorithm = 'aes-256-cbc';
-        $iv = openssl_random_pseudo_bytes(openssl_cipher_iv_length($algorithm));
+        $length = openssl_cipher_iv_length($algorithm);
+        if (!$length) {
+            throw new RuntimeException('Invalid algorithm');
+        }
+        $iv = openssl_random_pseudo_bytes($length);
         $encryptedString = openssl_encrypt($plaintext, $algorithm, $secret, OPENSSL_RAW_DATA, $iv);
 
         return base64_encode($iv) . ':' . base64_encode($encryptedString);
@@ -29,6 +33,10 @@ class FileLinkHelper
         }
         [$iv, $encrypted] = $parts;
         $iv = base64_decode($iv);
+        // 16 bytes iv length
+        if (strlen($iv) !== 16) {
+            throw new InvalidArgumentException('Invalid encrypted string');
+        }
         $encryptedString = base64_decode($encrypted);
         $algorithm = 'aes-256-cbc';
         $decrypted = openssl_decrypt($encryptedString, $algorithm, $secret, OPENSSL_RAW_DATA, $iv);
