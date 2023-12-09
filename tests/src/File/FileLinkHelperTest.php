@@ -8,7 +8,7 @@ use PHPUnit\Framework\TestCase;
 /**
  * @group files
  */
-class FileLinkTest extends TestCase
+class FileLinkHelperTest extends TestCase
 {
     public function testFileLinkHelperEncryptDecrypt(): void
     {

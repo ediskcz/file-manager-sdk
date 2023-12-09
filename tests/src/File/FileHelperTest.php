@@ -8,7 +8,7 @@ use PHPUnit\Framework\TestCase;
 /**
  * @group files
  */
-class FileTest extends TestCase
+class FileHelperTest extends TestCase
 {
     public function urlProvider(): array
     {
@@ -34,6 +34,7 @@ class FileTest extends TestCase
         ];
         // Test 9: Test with non-Latin characters
         $data[] = ['中文文件.jpg', 'zhongwenwenjian'];
+        $data[] = ['vietnamské rýžové rolky gỏi cuốn', 'vietnamske-ryzove-rolky-goi-cuon'];
         // Test 10: Test with a filename containing only numbers
         $data[] = ['1234567890.txt', '1234567890'];
 

@@ -29,7 +29,36 @@ class FileHelper
     {
         $name = StringHelper::fixUtf8($name);
         $name = trim($name, '\\/- ');
-        $slugify = new Slugify(["rulesets" => ["default", "chinese"]]);
+        $slugify = new Slugify(
+            [
+                'rulesets' => [
+                    'default',
+                    // Languages are preferred if they appear later, list is ordered by number of
+                    // websites in that language
+                    // https://en.wikipedia.org/wiki/Languages_used_on_the_Internet#Content_languages_for_websites
+                    'armenian',
+                    'azerbaijani',
+                    'burmese',
+                    'chinese',
+                    'hindi',
+                    'georgian',
+                    'norwegian',
+                    'vietnamese',
+                    'ukrainian',
+                    'latvian',
+                    'finnish',
+                    'greek',
+                    'czech',
+                    'arabic',
+                    'slovak',
+                    'turkish',
+                    'polish',
+                    'german',
+                    'russian',
+                    'romanian',
+                ],
+            ]
+        );
         $name = $slugify->slugify($name);
         $name = trim($name);
         $name = mb_substr($name, 0, $maxLength);
