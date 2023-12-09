@@ -3,6 +3,7 @@
 namespace Edisk\FileManager\File;
 
 use Cocur\Slugify\Slugify;
+use Edisk\Common\Utils\StringHelper;
 
 class FileHelper
 {
@@ -24,16 +25,23 @@ class FileHelper
         self::TYPE_VIDEO,
     ];
 
-    public const MAX_FILE_URL_LENGTH = 150;
-
-    public static function generateUrl(string $name): string
+    public static function generateSlug(string $name, int $maxLength = 150): string
     {
+        $name = StringHelper::fixUtf8($name);
         $name = trim($name, '\\/- ');
-        $slugify = new Slugify();
+        $slugify = new Slugify(["rulesets" => ["default", "chinese"]]);
         $name = $slugify->slugify($name);
         $name = trim($name);
+        $name = mb_substr($name, 0, $maxLength);
 
-        return mb_substr($name, 0, self::MAX_FILE_URL_LENGTH);
+        return trim($name, '-');
+    }
+
+    public static function generateFilenameSlug(string $path, int $maxLength = 150): string
+    {
+        $filename = pathinfo($path, PATHINFO_FILENAME);
+
+        return self::generateSlug($filename, $maxLength);
     }
 
     public static function deleteDirectory(string $dir, bool $keepDir = false): bool

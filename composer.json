@@ -24,6 +24,12 @@
             "tests/src/"
         ]
     },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/ediskcz/common.git"
+        }
+    ],
     "require": {
         "php": "^8.0",
         "ext-fileinfo": "*",
@@ -33,6 +39,7 @@
         "cocur/slugify": "^4.2",
         "doctrine/orm": "^2.16",
         "doctrine/doctrine-bundle": "^2.10",
+        "edisk/common": "0.0.7",
         "geoip2/geoip2": "^2.12",
         "league/flysystem": "^3.0",
         "nelexa/zip": "^4.0"
