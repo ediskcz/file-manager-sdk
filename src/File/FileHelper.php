@@ -57,6 +57,22 @@ class FileHelper
         return true;
     }
 
+    public static function getMimeType(string $file): string
+    {
+        $fileInfo = finfo_open(FILEINFO_MIME_TYPE);
+        $mime = finfo_file($fileInfo, $file);
+        finfo_close($fileInfo);
+
+        return $mime;
+    }
+
+    public static function getExtension(string $file): string
+    {
+        $ext = pathinfo($file, PATHINFO_EXTENSION);
+
+        return mb_strtolower($ext);
+    }
+
     public static function getFileTypeFromExtension(string $extension): string
     {
         return match ($extension) {
