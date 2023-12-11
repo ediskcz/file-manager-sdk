@@ -122,4 +122,39 @@ class FileHelper
             default => self::TYPE_FILE,
         };
     }
+
+    public static function normalizeFilename(string $filename, string $defaultName = 'new file'): string
+    {
+        // initial cleanup
+        $trimChars = " \t\n\r\0\x0B.-_";
+        $filename = trim($filename, $trimChars);
+        $filename = StringHelper::fixUtf8($filename);
+
+        $pathInfo = pathinfo($filename);
+        $filename = $pathInfo['filename'];
+
+        $filename = str_replace(['.', '-', '/', '\\', '_'], ' ', $filename);
+        /** @noinspection CascadeStringReplacementInspection */
+        $filename = str_replace(['@', '#', '$', '%', '^', '&'], '', $filename);
+
+        // replace multiple spaces with a single space
+        $filename = preg_replace('/\s+/', ' ', $filename);
+        $filename = trim($filename, $trimChars);
+        // if filename is all uppercase, convert it to title case
+        $uppercaseCount = preg_match_all('/[A-Z]/', $filename);
+        if ($uppercaseCount > mb_strlen($filename) / 3) {
+            $filename = mb_strtolower($filename);
+            $filename = mb_convert_case($filename, MB_CASE_TITLE);
+        }
+        if (empty($filename)) {
+            $filename = $defaultName;
+        }
+
+        // append extension
+        if (isset($pathInfo['extension'])) {
+            $filename .= '.' . mb_strtolower($pathInfo['extension']);
+        }
+
+        return $filename;
+    }
 }
