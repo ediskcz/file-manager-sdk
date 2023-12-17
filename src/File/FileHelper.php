@@ -138,7 +138,7 @@ class FileHelper
         $filename = str_replace(['@', '#', '$', '%', '^', '&'], '', $filename);
 
         // replace multiple spaces with a single space
-        $filename = preg_replace('/\s+/', ' ', $filename);
+        $filename = (string) preg_replace('/\s+/', ' ', $filename);
         $filename = trim($filename, $trimChars);
         // if filename is all uppercase, convert it to title case
         $uppercaseCount = preg_match_all('/[A-Z]/', $filename);
