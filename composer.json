@@ -34,6 +34,7 @@
         "php": "^8.0",
         "ext-fileinfo": "*",
         "ext-iconv": "*",
+        "ext-intl": "*",
         "ext-mbstring": "*",
         "ext-openssl": "*",
         "cocur/slugify": "^4.2",

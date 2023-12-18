@@ -4,6 +4,7 @@ namespace Edisk\FileManager\File;
 
 use Cocur\Slugify\Slugify;
 use Edisk\Common\Utils\StringHelper;
+use Transliterator;
 
 class FileHelper
 {
@@ -156,5 +157,48 @@ class FileHelper
         }
 
         return $filename;
+    }
+
+    public static function filenameToAscii(string $filename): string
+    {
+        $filename = self::normalizeFilename($filename);
+        // convert filename to ASCII
+        // https://stackoverflow.com/questions/3542717/how-to-remove-accents-and-turn-letters-into-plain-ascii-characters/3542748#3542748
+        $rules = ':: Any-Latin; :: Latin-ASCII; :: NFD; :: [:Nonspacing Mark:] Remove; :: Lower(); :: NFC;';
+        $trans = Transliterator::createFromRules($rules, Transliterator::FORWARD);
+        if ($trans) {
+            $transFilename = $trans->transliterate($filename);
+            if ($transFilename) {
+                $filename = $transFilename;
+            }
+        } else {
+            // fallback to iconv
+            $filename = iconv('UTF-8', 'ASCII//TRANSLIT//IGNORE', $filename);
+        }
+
+        return $filename;
+    }
+
+    /**
+     * @param string[] $needles array of strings to search for
+     */
+    public static function filenameContains(string $filename, array $needles, bool $all = false): bool
+    {
+        if (empty($needles)) {
+            return false;
+        }
+        $filename = self::filenameToAscii($filename);
+        $filename = mb_strtolower($filename);
+        $result = true;
+        foreach ($needles as $needle) {
+            $needle = mb_strtolower($needle);
+            $contains = str_contains($filename, $needle);
+            if ($contains && !$all) {
+                return true;
+            }
+            $result = $result && $contains;
+        }
+
+        return $result;
     }
 }

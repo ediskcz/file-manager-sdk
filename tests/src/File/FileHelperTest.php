@@ -96,4 +96,37 @@ class FileHelperTest extends TestCase
 
         self::assertEquals($expected, $result);
     }
+
+    public function filenameContainsProvider(): array
+    {
+        $data = [];
+        $data[] = ['Ulice', ['ulice'], true];
+        $data[] = ['Zlatá Labuť', ['zlata', 'labut'], true];
+        $data[] = ['eliška-a-damián', ['eliska a damian'], true];
+        $data[] = ['Matematika--_ zločinu', ['matematika zlocinu'], true];
+        $data[] = ['Hello___World   ', ['Hello World'], true];
+        // Non-ASCII characters with accents
+        $data[] = ['Café français', ['cafe'], true];
+        // Non-ASCII characters with tilde
+        $data[] = ['Español', ['espanol'], true];
+        $data[] = ['Łeba', ['Leba'], true];
+        // Non-ASCII characters from Cyrillic alphabet
+        $data[] = ['Русский язык', ['russkij'], true];
+        // Special characters
+        $data[] = ['123 Special Characters: @#$%^&*()-=_+[]{}|;:\'",.<>?`', ['@'], false];
+        // Emoji characters
+        $data[] = ['Some Emoji 😀🌍❤️', ['😀'], true];
+
+        return $data;
+    }
+
+    /**
+     * @dataProvider filenameContainsProvider
+     */
+    public function testFilenameContains(string $input, array $contains, bool $expected): void
+    {
+        $result = FileHelper::filenameContains($input, $contains);
+
+        self::assertEquals($expected, $result);
+    }
 }
