@@ -191,6 +191,7 @@ class FileHelper
         $filename = mb_strtolower($filename);
         $result = true;
         foreach ($needles as $needle) {
+            $needle = self::filenameToAscii($needle);
             $needle = mb_strtolower($needle);
             $contains = str_contains($filename, $needle);
             if ($contains && !$all) {

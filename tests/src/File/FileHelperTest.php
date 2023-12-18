@@ -102,7 +102,7 @@ class FileHelperTest extends TestCase
         $data = [];
         $data[] = ['Ulice', ['ulice'], true];
         $data[] = ['Zlatá Labuť', ['zlata', 'labut'], true];
-        $data[] = ['eliška-a-damián', ['eliska a damian'], true];
+        $data[] = ['eliška-a--damian', ['eliška a damián'], true];
         $data[] = ['Matematika--_ zločinu', ['matematika zlocinu'], true];
         $data[] = ['Hello___World   ', ['Hello World'], true];
         // Non-ASCII characters with accents
