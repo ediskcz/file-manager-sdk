@@ -116,6 +116,8 @@ class FileHelperTest extends TestCase
         $data[] = ['123 Special Characters: @#$%^&*()-=_+[]{}|;:\'",.<>?`', ['@'], false];
         // Emoji characters
         $data[] = ['Some Emoji 😀🌍❤️', ['😀'], true];
+        // Test not found 🤦‍♂️
+        $data[] = ['z', ['Z o o'], false];
 
         return $data;
     }
