@@ -104,11 +104,12 @@ class FileHelper
         return $mime;
     }
 
-    public static function getExtension(string $file): string
+    public static function getExtension(string $file, int $maxLength = 10): string
     {
         $ext = pathinfo($file, PATHINFO_EXTENSION);
+        $ext = mb_strtolower($ext);
 
-        return mb_strtolower($ext);
+        return mb_substr($ext, 0, $maxLength);
     }
 
     public static function getFileTypeFromExtension(string $extension): string
