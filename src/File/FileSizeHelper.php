@@ -21,7 +21,7 @@ class FileSizeHelper
             return number_format($size / (1 << 10), $decimals, $decimalSeparator, $thousandsSeparator) . ' KB';
         }
 
-        return number_format($size) . " b";
+        return number_format($size, $decimals, $decimalSeparator, $thousandsSeparator) . " b";
     }
 
     public static function urlSlug(int $size, ?string $unit = null): string
