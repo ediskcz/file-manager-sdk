@@ -14,96 +14,98 @@ use Doctrine\ORM\Mapping as ORM;
  *         @ORM\Index(name="hash", columns={"hash"}),
  *     }
  * )
+ * @ORM\InheritanceType("SINGLE_TABLE")
+ * @ORM\MappedSuperclass()
  */
-class Video
+abstract class Video
 {
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      */
-    private int $id;
+    protected int $id;
 
     /**
      * @ORM\Column(name="files_id", type="integer", nullable=false)
      */
-    private int $filesId;
+    protected int $filesId;
 
     /**
      * @ORM\Column(name="resolution", type="string", length=20, nullable=true, options={"default"=null})
      */
-    private ?string $resolution;
+    protected ?string $resolution;
 
     /**
      * @ORM\Column(name="duration", type="string", length=20, nullable=true, options={"default"=null})
      */
-    private ?string $duration;
+    protected ?string $duration;
 
     /**
      * @ORM\Column(name="codec", type="string", length=100, nullable=true, options={"default"=null})
      */
-    private ?string $codec;
+    protected ?string $codec;
 
     /**
      * @ORM\Column(name="bitrate", type="integer", nullable=true, options={"default"=null})
      */
-    private ?string $bitrate;
+    protected ?string $bitrate;
 
     /**
      * @ORM\Column(name="frequency", type="string", length=20, nullable=true, options={"default"=null})
      */
-    private ?string $frequency;
+    protected ?string $frequency;
 
     /**
      * @ORM\Column(name="audio_codec", type="string", length=100, nullable=true, options={"default"=null})
      */
-    private ?string $audioCodec;
+    protected ?string $audioCodec;
 
     /**
      * @ORM\Column(name="audio_bitrate", type="integer", nullable=true, options={"default"=null})
      */
-    private ?string $audioBitrate;
+    protected ?string $audioBitrate;
 
     /**
      * @ORM\Column(name="audio_channels", type="integer", nullable=true, options={"default"=null})
      */
-    private ?string $audioChannels;
+    protected ?string $audioChannels;
 
     /**
      * @ORM\Column(name="audio_language", type="string", length=2, nullable=true, options={"default"=null})
      */
-    private ?string $audioLanguage;
+    protected ?string $audioLanguage;
 
     /**
      * @ORM\Column(name="release_year", type="integer", nullable=true, options={"default"=null})
      */
-    private ?int $releaseYear;
+    protected ?int $releaseYear;
 
     /**
      * @ORM\Column(name="hd", type="smallint", nullable=false, options={"default"=0})
      */
-    private bool $hd = false;
+    protected bool $hd = false;
 
     /**
      * @ORM\OneToOne(targetEntity="File", fetch="LAZY", cascade={"persist"})
      * @ORM\JoinColumn(name="files_id", referencedColumnName="id", onDelete="CASCADE")
      */
-    private File $file;
+    protected File $file;
 
     /**
      * @ORM\Column(name="has_subtitles", type="boolean", nullable=false, options={"default"=false})
      */
-    private bool $hasSubtitles = false;
+    protected bool $hasSubtitles = false;
 
     /**
      * @ORM\Column(name="hash", type="string", length=12, nullable=false, options={"default"=NULL})
      */
-    private string $hash;
+    protected string $hash;
 
     /**
      * @ORM\Column(name="poster_path", type="string", length=200, nullable=true, options={"default"=null})
      */
-    private ?string $posterPath;
+    protected ?string $posterPath;
 
     public function getId(): int
     {

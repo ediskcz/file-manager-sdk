@@ -5,32 +5,34 @@ namespace Edisk\FileManager\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(),
+ * @ORM\Entity()
  * @ORM\Table(
  *     name="directory",
  *     indexes={
  *         @ORM\Index(name="user_id", columns={"user_id"}),
  *     }
  * )
+ * @ORM\InheritanceType("SINGLE_TABLE")
+ * @ORM\MappedSuperclass()
  */
-class Directory
+abstract class Directory
 {
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      */
-    private int $id;
+    protected int $id;
 
     /**
      * @ORM\Column(name="name", type="string", length=100, nullable=false)
      */
-    private string $name;
+    protected string $name;
 
     /**
      * @ORM\Column(name="user_id", type="integer", nullable=false)
      */
-    private int $userId;
+    protected int $userId;
 
     public function getId(): int
     {

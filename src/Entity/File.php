@@ -2,12 +2,12 @@
 
 namespace Edisk\FileManager\Entity;
 
-use Edisk\FileManager\Repository\FileRepository;
 use DateTimeImmutable;
+use Edisk\FileManager\Repository\FileRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass=FileRepository::class),
+ * @ORM\Entity(repositoryClass=FileRepository::class)
  * @ORM\Table(
  *     name="file",
  *     indexes={
@@ -19,120 +19,122 @@ use Doctrine\ORM\Mapping as ORM;
  *         @ORM\Index(name="storage_id", columns={"storage_id"}),
  *     }
  * )
+ * @ORM\InheritanceType("SINGLE_TABLE")
+ * @ORM\MappedSuperclass()
  */
-class File
+abstract class File
 {
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      */
-    private int $id;
+    protected int $id;
 
     /**
      * @ORM\Column(name="import_service", type="string", length=50, nullable=true, options={"default":null})
      */
-    private ?string $importService;
+    protected ?string $importService;
 
     /**
      * @ORM\Column(name="import_id", type="integer", nullable=true, options={"default":null})
      */
-    private ?int $importId;
+    protected ?int $importId;
 
     /**
      * @ORM\Column(name="url", type="string", length=200, nullable=false)
      */
-    private string $url;
+    protected string $url;
 
     /**
      * @ORM\Column(name="path", type="string", length=200, nullable=true, options={"default":null})
      */
-    private ?string $path;
+    protected ?string $path;
 
     /**
      * @ORM\Column(name="storage_id", type="integer", nullable=true, options={"default":null})
      */
-    private ?int $storageId;
+    protected ?int $storageId;
 
     /**
      * @ORM\Column(name="create_date", type="datetime_immutable", nullable=false)
      */
-    private DateTimeImmutable $createDate;
+    protected DateTimeImmutable $createDate;
 
     /**
      * @ORM\Column(name="user_id", type="integer", nullable=true, options={"default":null})
      */
-    private ?int $userId;
+    protected ?int $userId;
 
     /**
      * @ORM\Column(name="directory_id", type="integer", nullable=true, options={"default":null})
      */
-    private ?int $directoryId;
+    protected ?int $directoryId;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=false)
      */
-    private string $filename;
+    protected string $filename;
 
     /**
      * @ORM\Column(name="filesize", type="bigint", nullable=false)
      */
-    private string $filesize;
+    protected string $filesize;
 
     /**
      * @ORM\Column(type="string", length=10, nullable=false)
      */
-    private string $extension;
+    protected string $extension;
 
     /**
      * @ORM\Column(type="text", length=65535, nullable=true, options={"default"=NULL})
      */
-    private ?string $description;
+    protected ?string $description;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true, options={"default"=NULL})
      */
-    private ?string $search;
+    protected ?string $search;
 
     /**
      * @ORM\Column(name="thumbs_up", type="integer", nullable=false, options={"default":0})
      */
-    private int $thumbsUp = 0;
+    protected int $thumbsUp = 0;
 
     /**
      * @ORM\Column(name="thumbs_down", type="integer", nullable=false, options={"default":0})
      */
-    private int $thumbsDown = 0;
+    protected int $thumbsDown = 0;
 
     /**
      * @ORM\Column(name="processed", type="smallint", nullable=false, options={"default"=0})
      */
-    private bool $processed = false;
+    protected bool $processed = false;
 
     /**
      * @ORM\Column(name="deleted", type="smallint", nullable=false, options={"default"=0})
      */
-    private bool $deleted = false;
+    protected bool $deleted = false;
 
     /**
      * @ORM\Column(name="delete_date", type="datetime_immutable", nullable=true, options={"default"=NULL})
      */
-    private ?DateTimeImmutable $deleteDate;
+    protected ?DateTimeImmutable $deleteDate;
 
     /**
      * @ORM\Column(name="deleted_storage", type="smallint", nullable=false, options={"default"=0})
      */
-    private bool $deletedStorage = false;
+    protected bool $deletedStorage = false;
 
     /**
      * @ORM\Column(name="views", type="integer", nullable=false, options={"default":0})
      */
-    private int $views = 0;
+    protected int $views = 0;
 
     /**
      * @ORM\Column(name="downloads", type="integer", nullable=false, options={"default":0})
      */
-    private int $downloads = 0;
+    protected int $downloads = 0;
 
     /**
      * @var null|Directory
@@ -140,19 +142,19 @@ class File
      * @ORM\ManyToOne(targetEntity="App\Entity\Directory", fetch="LAZY")
      * @ORM\JoinColumn(name="directory_id", referencedColumnName="id", onDelete="SET NULL")
      */
-    private ?Directory $directory;
+    protected ?Directory $directory;
 
     /**
      * @ORM\Column(name="mime_type", type="string", length=255, nullable=true, options={"default"=NULL})
      */
-    private ?string $mimeType;
+    protected ?string $mimeType;
 
     /**
      * @var null|DateTimeImmutable
      *
      * @ORM\Column(name="last_update_date", type="datetime_immutable", nullable=true, options={"default"=NULL})
      */
-    private ?DateTimeImmutable $lastUpdateDate;
+    protected ?DateTimeImmutable $lastUpdateDate;
 
     public function getId(): int
     {

@@ -12,61 +12,63 @@ use Doctrine\ORM\Mapping as ORM;
  *         @ORM\Index(name="video_id", columns={"video_id"}),
  *     }
  * )
+ * @ORM\InheritanceType("SINGLE_TABLE")
+ * @ORM\MappedSuperclass()
  */
-class VideoSubtitles
+abstract class VideoSubtitles
 {
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      */
-    private int $id;
+    protected int $id;
 
     /**
      * @ORM\Column(name="video_id", type="integer", nullable=false)
      */
-    private int $videoId;
+    protected int $videoId;
 
     /**
      * @ORM\Column(name="name", type="string", nullable=false, options={})
      */
-    private string $name;
+    protected string $name;
 
     /**
      * @ORM\Column(name="filename", type="string", nullable=false, options={})
      */
-    private string $filename;
+    protected string $filename;
 
     /**
      * @ORM\Column(name="filesize", type="integer", nullable=false, options={})
      */
-    private int $filesize;
+    protected int $filesize;
 
     /**
      * @ORM\Column(name="path", type="string", nullable=false, options={})
      */
-    private string $path;
+    protected string $path;
 
     /**
      * @ORM\Column(name="jwplayer_filesize", type="integer", nullable=true, options={"default"=null})
      */
-    private ?int $jwplayerFilesize;
+    protected ?int $jwplayerFilesize;
 
     /**
      * @ORM\Column(name="jwplayer_path", type="string", nullable=true, options={"default"=null})
      */
-    private ?string $jwplayerPath;
+    protected ?string $jwplayerPath;
 
     /**
      * @ORM\ManyToOne(targetEntity="Video", fetch="LAZY", cascade={"persist"})
      * @ORM\JoinColumn(name="video_id", referencedColumnName="id", onDelete="CASCADE")
      */
-    private Video $video;
+    protected Video $video;
 
     /**
      * @ORM\Column(name="is_default", type="boolean", nullable=false, options={"default"=false})
      */
-    private bool $isDefault = false;
+    protected bool $isDefault = false;
 
     public function getId(): int
     {
