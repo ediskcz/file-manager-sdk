@@ -6,154 +6,100 @@ use DateTimeImmutable;
 use Edisk\FileManager\Repository\FileRepository;
 use Doctrine\ORM\Mapping as ORM;
 
-/**
- * @ORM\Entity(repositoryClass=FileRepository::class)
- * @ORM\Table(
- *     name="file",
- *     indexes={
- *         @ORM\Index(name="url", columns={"url"}),
- *         @ORM\Index(name="search", columns={"search", "filename"}, flags={"fulltext"}),
- *         @ORM\Index(name="directory_id", columns={"directory_id"}),
- *         @ORM\Index(name="user_id", columns={"user_id"}),
- *         @ORM\Index(name="create_date", columns={"create_date"}),
- *         @ORM\Index(name="storage_id", columns={"storage_id"}),
- *     }
- * )
- * @ORM\InheritanceType("SINGLE_TABLE")
- * @ORM\MappedSuperclass()
- */
+#[ORM\Table(name: 'file')]
+#[ORM\Index(columns: ['url'], name: 'url')]
+#[ORM\Index(columns: ['search', 'filename'], name: 'search', flags: ['fulltext'])]
+#[ORM\Index(columns: ['directory_id'], name: 'directory_id')]
+#[ORM\Index(columns: ['user_id'], name: 'user_id')]
+#[ORM\Index(columns: ['create_date'], name: 'create_date')]
+#[ORM\Index(columns: ['storage_id'], name: 'storage_id')]
+#[ORM\Entity(repositoryClass: FileRepository::class)]
+#[ORM\InheritanceType('SINGLE_TABLE')]
+#[ORM\MappedSuperclass]
 abstract class File
 {
-    /**
-     * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
-     */
+    #[ORM\Id]
+    #[ORM\GeneratedValue]
+    #[ORM\Column(type: 'integer')]
     protected int $id;
 
-    /**
-     * @ORM\Column(name="import_service", type="string", length=50, nullable=true, options={"default":null})
-     */
+    #[ORM\Column(name: 'import_service', type: 'string', length: 50, nullable: true, options: ['default' => null])]
     protected ?string $importService;
 
-    /**
-     * @ORM\Column(name="import_id", type="integer", nullable=true, options={"default":null})
-     */
+    #[ORM\Column(name: 'import_id', type: 'integer', nullable: true, options: ['default' => null])]
     protected ?int $importId;
 
-    /**
-     * @ORM\Column(name="url", type="string", length=200, nullable=false)
-     */
+    #[ORM\Column(name: 'url', type: 'string', length: 200, nullable: false)]
     protected string $url;
 
-    /**
-     * @ORM\Column(name="path", type="string", length=200, nullable=true, options={"default":null})
-     */
+    #[ORM\Column(name: 'path', type: 'string', length: 200, nullable: true, options: ['default' => null])]
     protected ?string $path;
 
-    /**
-     * @ORM\Column(name="storage_id", type="integer", nullable=true, options={"default":null})
-     */
+    #[ORM\Column(name: 'storage_id', type: 'integer', nullable: true, options: ['default' => null])]
     protected ?int $storageId;
 
-    /**
-     * @ORM\Column(name="create_date", type="datetime_immutable", nullable=false)
-     */
+    #[ORM\Column(name: 'create_date', type: 'datetime_immutable', nullable: false)]
     protected DateTimeImmutable $createDate;
 
-    /**
-     * @ORM\Column(name="user_id", type="integer", nullable=true, options={"default":null})
-     */
+    #[ORM\Column(name: 'user_id', type: 'integer', nullable: true, options: ['default' => null])]
     protected ?int $userId;
 
-    /**
-     * @ORM\Column(name="directory_id", type="integer", nullable=true, options={"default":null})
-     */
+    #[ORM\Column(name: 'directory_id', type: 'integer', nullable: true, options: ['default' => null])]
     protected ?int $directoryId;
 
-    /**
-     * @ORM\Column(type="string", length=255, nullable=false)
-     */
+    #[ORM\Column(type: 'string', length: 255, nullable: false)]
     protected string $filename;
 
-    /**
-     * @ORM\Column(name="filesize", type="bigint", nullable=false)
-     */
+    #[ORM\Column(name: 'filesize', type: 'bigint', nullable: false)]
     protected string $filesize;
 
-    /**
-     * @ORM\Column(type="string", length=10, nullable=false)
-     */
+    #[ORM\Column(type: 'string', length: 10, nullable: false)]
     protected string $extension;
 
-    /**
-     * @ORM\Column(type="text", length=65535, nullable=true, options={"default"=NULL})
-     */
+    #[ORM\Column(type: 'text', length: 65535, nullable: true, options: ['default' => null])]
     protected ?string $description;
 
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true, options={"default"=NULL})
-     */
+    #[ORM\Column(type: 'string', length: 255, nullable: true, options: ['default' => null])]
     protected ?string $search;
 
-    /**
-     * @ORM\Column(name="thumbs_up", type="integer", nullable=false, options={"default":0})
-     */
+    #[ORM\Column(name: 'thumbs_up', type: 'integer', nullable: false, options: ['default' => 0])]
     protected int $thumbsUp = 0;
 
-    /**
-     * @ORM\Column(name="thumbs_down", type="integer", nullable=false, options={"default":0})
-     */
+    #[ORM\Column(name: 'thumbs_down', type: 'integer', nullable: false, options: ['default' => 0])]
     protected int $thumbsDown = 0;
 
-    /**
-     * @ORM\Column(name="processed", type="smallint", nullable=false, options={"default"=0})
-     */
+    #[ORM\Column(name: 'processed', type: 'smallint', nullable: false, options: ['default' => 0])]
     protected bool $processed = false;
 
-    /**
-     * @ORM\Column(name="deleted", type="smallint", nullable=false, options={"default"=0})
-     */
+    #[ORM\Column(name: 'deleted', type: 'smallint', nullable: false, options: ['default' => 0])]
     protected bool $deleted = false;
 
-    /**
-     * @ORM\Column(name="delete_date", type="datetime_immutable", nullable=true, options={"default"=NULL})
-     */
+    #[ORM\Column(name: 'delete_date', type: 'datetime_immutable', nullable: true, options: ['default' => null])]
     protected ?DateTimeImmutable $deleteDate;
 
-    /**
-     * @ORM\Column(name="deleted_storage", type="smallint", nullable=false, options={"default"=0})
-     */
+    #[ORM\Column(name: 'deleted_storage', type: 'smallint', nullable: false, options: ['default' => 0])]
     protected bool $deletedStorage = false;
 
-    /**
-     * @ORM\Column(name="views", type="integer", nullable=false, options={"default":0})
-     */
+    #[ORM\Column(name: 'views', type: 'integer', nullable: false, options: ['default' => 0])]
     protected int $views = 0;
 
-    /**
-     * @ORM\Column(name="downloads", type="integer", nullable=false, options={"default":0})
-     */
+    #[ORM\Column(name: 'downloads', type: 'integer', nullable: false, options: ['default' => 0])]
     protected int $downloads = 0;
 
     /**
      * @var null|Directory
-     *
-     * @ORM\ManyToOne(targetEntity="App\Entity\Directory", fetch="LAZY")
-     * @ORM\JoinColumn(name="directory_id", referencedColumnName="id", onDelete="SET NULL")
      */
+    #[ORM\JoinColumn(name: 'directory_id', referencedColumnName: 'id', onDelete: 'SET NULL')]
+    #[ORM\ManyToOne(targetEntity: Directory::class, fetch: 'LAZY')]
     protected ?Directory $directory;
 
-    /**
-     * @ORM\Column(name="mime_type", type="string", length=255, nullable=true, options={"default"=NULL})
-     */
+    #[ORM\Column(name: 'mime_type', type: 'string', length: 255, nullable: true, options: ['default' => null])]
     protected ?string $mimeType;
 
     /**
      * @var null|DateTimeImmutable
-     *
-     * @ORM\Column(name="last_update_date", type="datetime_immutable", nullable=true, options={"default"=NULL})
      */
+    #[ORM\Column(name: 'last_update_date', type: 'datetime_immutable', nullable: true, options: ['default' => null])]
     protected ?DateTimeImmutable $lastUpdateDate;
 
     public function getId(): int

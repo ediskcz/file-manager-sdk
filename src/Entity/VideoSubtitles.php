@@ -4,70 +4,44 @@ namespace Edisk\FileManager\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
-/**
- * @ORM\Entity()
- * @ORM\Table(
- *     name="video_subtitles",
- *     indexes={
- *         @ORM\Index(name="video_id", columns={"video_id"}),
- *     }
- * )
- * @ORM\InheritanceType("SINGLE_TABLE")
- * @ORM\MappedSuperclass()
- */
+#[ORM\Table(name: 'video_subtitles')]
+#[ORM\Index(name: 'video_id', columns: ['video_id'])]
+#[ORM\Entity]
+#[ORM\InheritanceType('SINGLE_TABLE')]
+#[ORM\MappedSuperclass]
 abstract class VideoSubtitles
 {
-    /**
-     * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
-     */
+    #[ORM\Id]
+    #[ORM\GeneratedValue]
+    #[ORM\Column(type: 'integer')]
     protected int $id;
 
-    /**
-     * @ORM\Column(name="video_id", type="integer", nullable=false)
-     */
+    #[ORM\Column(name: 'video_id', type: 'integer', nullable: false)]
     protected int $videoId;
 
-    /**
-     * @ORM\Column(name="name", type="string", nullable=false, options={})
-     */
+    #[ORM\Column(name: 'name', type: 'string', nullable: false, options: [])]
     protected string $name;
 
-    /**
-     * @ORM\Column(name="filename", type="string", nullable=false, options={})
-     */
+    #[ORM\Column(name: 'filename', type: 'string', nullable: false, options: [])]
     protected string $filename;
 
-    /**
-     * @ORM\Column(name="filesize", type="integer", nullable=false, options={})
-     */
+    #[ORM\Column(name: 'filesize', type: 'integer', nullable: false, options: [])]
     protected int $filesize;
 
-    /**
-     * @ORM\Column(name="path", type="string", nullable=false, options={})
-     */
+    #[ORM\Column(name: 'path', type: 'string', nullable: false, options: [])]
     protected string $path;
 
-    /**
-     * @ORM\Column(name="jwplayer_filesize", type="integer", nullable=true, options={"default"=null})
-     */
+    #[ORM\Column(name: 'jwplayer_filesize', type: 'integer', nullable: true, options: ['default' => null])]
     protected ?int $jwplayerFilesize;
 
-    /**
-     * @ORM\Column(name="jwplayer_path", type="string", nullable=true, options={"default"=null})
-     */
+    #[ORM\Column(name: 'jwplayer_path', type: 'string', nullable: true, options: ['default' => null])]
     protected ?string $jwplayerPath;
 
-    /**
-     * @ORM\ManyToOne(targetEntity="Video", fetch="LAZY", cascade={"persist"})
-     * @ORM\JoinColumn(name="video_id", referencedColumnName="id", onDelete="CASCADE")
-     */
+    #[ORM\JoinColumn(name: 'video_id', referencedColumnName: 'id', onDelete: 'CASCADE')]
+    #[ORM\ManyToOne(targetEntity: \Video::class, fetch: 'LAZY', cascade: ['persist'])]
     protected Video $video;
 
-    /**
-     * @ORM\Column(name="is_default", type="boolean", nullable=false, options={"default"=false})
-     */
+    #[ORM\Column(name: 'is_default', type: 'boolean', nullable: false, options: ['default' => false])]
     protected bool $isDefault = false;
 
     public function getId(): int
