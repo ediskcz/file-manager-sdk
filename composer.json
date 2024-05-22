@@ -31,7 +31,7 @@
         }
     ],
     "require": {
-        "php": "^8.0",
+        "php": "^8.2",
         "ext-fileinfo": "*",
         "ext-iconv": "*",
         "ext-intl": "*",
@@ -40,7 +40,7 @@
         "cocur/slugify": "^4.2",
         "doctrine/orm": "^2.16",
         "doctrine/doctrine-bundle": "^2.10",
-        "edisk/common": "^0.0",
+        "edisk/common": "^0.1",
         "geoip2/geoip2": "^2.12",
         "league/flysystem": "^3.0",
         "nelexa/zip": "^4.0"
