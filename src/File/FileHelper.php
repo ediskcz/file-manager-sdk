@@ -203,4 +203,13 @@ class FileHelper
 
         return $result;
     }
+
+    public static function isEmptyDir(string $dir): bool
+    {
+        if (!is_readable($dir)) {
+            return false;
+        }
+
+        return (count(scandir($dir, SCANDIR_SORT_NONE)) === 2);
+    }
 }
