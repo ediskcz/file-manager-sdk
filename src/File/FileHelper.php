@@ -8,15 +8,15 @@ use Transliterator;
 
 class FileHelper
 {
-    public const TYPE_AUDIO = 'audio';
-    public const TYPE_ARCHIVE = 'archive';
-    public const TYPE_DOCUMENT = 'document';
-    public const TYPE_FILE = 'file'; // generic file type
-    public const TYPE_PHOTO = 'photo';
-    public const TYPE_SUBTITLES = 'subtitles';
-    public const TYPE_VIDEO = 'video';
+    public const string TYPE_AUDIO = 'audio';
+    public const string TYPE_ARCHIVE = 'archive';
+    public const string TYPE_DOCUMENT = 'document';
+    public const string TYPE_FILE = 'file'; // generic file type
+    public const string TYPE_PHOTO = 'photo';
+    public const string TYPE_SUBTITLES = 'subtitles';
+    public const string TYPE_VIDEO = 'video';
 
-    public const FILE_TYPES = [
+    public const array FILE_TYPES = [
         self::TYPE_AUDIO,
         self::TYPE_ARCHIVE,
         self::TYPE_DOCUMENT,

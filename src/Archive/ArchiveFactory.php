@@ -6,12 +6,12 @@ use InvalidArgumentException;
 
 class ArchiveFactory
 {
-    public const TYPES = ['zip'];
+    public const array TYPES = ['zip'];
 
     protected string $path;
     protected string $type;
 
-    protected const EXTENSION_TYPE_MAP = [
+    protected const array EXTENSION_TYPE_MAP = [
         'zip' => 'zip',
     ];
 
