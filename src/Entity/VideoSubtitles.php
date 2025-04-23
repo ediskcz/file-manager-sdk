@@ -5,7 +5,7 @@ namespace Edisk\FileManager\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Table(name: 'video_subtitles')]
-#[ORM\Index(name: 'video_id', columns: ['video_id'])]
+#[ORM\Index(columns: ['video_id'], name: 'video_id')]
 #[ORM\Entity]
 #[ORM\InheritanceType('SINGLE_TABLE')]
 #[ORM\MappedSuperclass]
@@ -38,7 +38,7 @@ abstract class VideoSubtitles
     protected ?string $jwplayerPath;
 
     #[ORM\JoinColumn(name: 'video_id', referencedColumnName: 'id', onDelete: 'CASCADE')]
-    #[ORM\ManyToOne(targetEntity: \Video::class, fetch: 'LAZY', cascade: ['persist'])]
+    #[ORM\ManyToOne(targetEntity: Video::class, cascade: ['persist'], fetch: 'LAZY')]
     protected Video $video;
 
     #[ORM\Column(name: 'is_default', type: 'boolean', nullable: false, options: ['default' => false])]
