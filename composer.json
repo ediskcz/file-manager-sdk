@@ -28,6 +28,10 @@
         {
             "type": "vcs",
             "url": "https://github.com/ediskcz/common.git"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/sovic/common.git"
         }
     ],
     "minimum-stability": "dev",
@@ -45,7 +49,8 @@
         "edisk/common": "dev-main",
         "geoip2/geoip2": "^2.12",
         "league/flysystem": "^3.0",
-        "nelexa/zip": "^4.0"
+        "nelexa/zip": "^4.0",
+        "sovic/common": "dev-master"
     },
     "require-dev": {
         "roave/security-advisories": "dev-master",
