@@ -6,8 +6,8 @@ use Edisk\FileManager\Repository\VideoRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Table(name: 'video')]
-#[ORM\Index(columns: ['files_id'], name: 'files_id')]
-#[ORM\Index(columns: ['hash'], name: 'hash')]
+#[ORM\Index(name: 'files_id', columns: ['files_id'])]
+#[ORM\Index(name: 'hash', columns: ['hash'])]
 #[ORM\Entity(repositoryClass: VideoRepository::class)]
 #[ORM\InheritanceType('SINGLE_TABLE')]
 #[ORM\MappedSuperclass]

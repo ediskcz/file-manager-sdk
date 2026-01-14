@@ -5,7 +5,7 @@ namespace Edisk\FileManager\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Table(name: 'video_subtitles')]
-#[ORM\Index(columns: ['video_id'], name: 'video_id')]
+#[ORM\Index(name: 'video_id', columns: ['video_id'])]
 #[ORM\Entity]
 #[ORM\InheritanceType('SINGLE_TABLE')]
 #[ORM\MappedSuperclass]

@@ -5,7 +5,7 @@ namespace Edisk\FileManager\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Table(name: 'directory')]
-#[ORM\Index(columns: ['user_id'], name: 'user_id')]
+#[ORM\Index(name: 'user_id', columns: ['user_id'])]
 #[ORM\Entity]
 #[ORM\InheritanceType('SINGLE_TABLE')]
 #[ORM\MappedSuperclass]

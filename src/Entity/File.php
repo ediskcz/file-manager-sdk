@@ -7,12 +7,12 @@ use Edisk\FileManager\Repository\FileRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Table(name: 'file')]
-#[ORM\Index(columns: ['url'], name: 'url')]
-#[ORM\Index(columns: ['search', 'filename'], name: 'search', flags: ['fulltext'])]
-#[ORM\Index(columns: ['directory_id'], name: 'directory_id')]
-#[ORM\Index(columns: ['user_id'], name: 'user_id')]
-#[ORM\Index(columns: ['create_date'], name: 'create_date')]
-#[ORM\Index(columns: ['storage_id'], name: 'storage_id')]
+#[ORM\Index(name: 'url', columns: ['url'])]
+#[ORM\Index(name: 'search', columns: ['search', 'filename'], flags: ['fulltext'])]
+#[ORM\Index(name: 'directory_id', columns: ['directory_id'])]
+#[ORM\Index(name: 'user_id', columns: ['user_id'])]
+#[ORM\Index(name: 'create_date', columns: ['create_date'])]
+#[ORM\Index(name: 'storage_id', columns: ['storage_id'])]
 #[ORM\Entity(repositoryClass: FileRepository::class)]
 #[ORM\InheritanceType('SINGLE_TABLE')]
 #[ORM\MappedSuperclass]

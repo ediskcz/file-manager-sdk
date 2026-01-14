@@ -109,7 +109,7 @@ class FileSearchRequest extends AbstractSearchRequest
 
         $query = StringUtil::toAscii($query);
         $query = str_replace(['_', '.', '-'], ' ', $query);
-        $query = (string) preg_replace('/\s+/', ' ', $query);
+        $query = preg_replace('/\s+/', ' ', $query);
         $query = trim($query, ' -');
         $query = mb_strtolower($query);
 
