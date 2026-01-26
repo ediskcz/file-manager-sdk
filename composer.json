@@ -47,7 +47,6 @@
         "doctrine/orm": "^3.5",
         "doctrine/doctrine-bundle": "^2.10",
         "edisk/common": "dev-main",
-        "geoip2/geoip2": "^2.12",
         "league/flysystem": "^3.0",
         "nelexa/zip": "^4.0",
         "sovic/common": "dev-master"
