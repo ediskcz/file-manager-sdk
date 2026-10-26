@@ -3,7 +3,7 @@
 namespace Edisk\FileManager\File;
 
 use Sovic\Common\DataList\Enum\LayoutId;
-use Sovic\Common\Helpers\StringUtil;
+use Sovic\Common\Utils\StringUtils;
 
 class FileSearchRequestFactory
 {
@@ -39,7 +39,7 @@ class FileSearchRequestFactory
         $search = substr($search, 0, self::MaxQueryLength);
         if (!empty($search)) {
             $search = str_replace(['_', '.', '-'], ' ', $search); // update to querystring and remove
-            $search = StringUtil::fixUtf8($search);
+            $search = StringUtils::fixUtf8($search);
             $request->setSearch($search);
         }
 

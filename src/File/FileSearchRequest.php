@@ -3,7 +3,7 @@
 namespace Edisk\FileManager\File;
 
 use Sovic\Common\DataList\AbstractSearchRequest;
-use Sovic\Common\Helpers\StringUtil;
+use Sovic\Common\Utils\StringUtils;
 
 class FileSearchRequest extends AbstractSearchRequest
 {
@@ -107,7 +107,7 @@ class FileSearchRequest extends AbstractSearchRequest
             return null;
         }
 
-        $query = StringUtil::toAscii($query);
+        $query = StringUtils::toAscii($query);
         $query = str_replace(['_', '.', '-'], ' ', $query);
         $query = preg_replace('/\s+/', ' ', $query);
         $query = trim($query, ' -');

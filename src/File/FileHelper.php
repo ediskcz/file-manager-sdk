@@ -3,7 +3,7 @@
 namespace Edisk\FileManager\File;
 
 use Cocur\Slugify\Slugify;
-use Sovic\Common\Helpers\StringUtil;
+use Sovic\Common\Utils\StringUtils;
 use Transliterator;
 
 class FileHelper
@@ -28,7 +28,7 @@ class FileHelper
 
     public static function generateSlug(string $name, int $maxLength = 150): string
     {
-        $name = StringUtil::fixUtf8($name);
+        $name = StringUtils::fixUtf8($name);
         $name = trim($name, '\\/- ');
         $slugify = new Slugify(
             [
@@ -130,7 +130,7 @@ class FileHelper
         // initial cleanup
         $trimChars = " \t\n\r\0\x0B.-_";
         $filename = trim($filename, $trimChars);
-        $filename = StringUtil::fixUtf8($filename);
+        $filename = StringUtils::fixUtf8($filename);
 
         $pathInfo = pathinfo($filename);
         $filename = $pathInfo['filename'];
